@@ -39,6 +39,6 @@ echo Compiling ffmpeg...
 git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
 
 
-CC=cl PKG_CONFIG_PATH=../../installed/lib/pkgconfig ../../sources/ffmpeg/configure --prefix=../../installed --toolchain=msvc --arch=x86_64 --enable-yasm --enable-asm --disable-shared --enable-static --enable-libx264 --enable-gpl --enable-nonfree --enable-debug --disable-optimizations --extra-ldflags="-LIBPATH:../../installed/lib" --extra-cflags="-I../../installed/include/"
+CC=cl PKG_CONFIG_PATH=../../installed/lib/pkgconfig ../../sources/ffmpeg/configure --prefix=../../installed --toolchain=msvc --arch=x86_64 --enable-asm --disable-shared --enable-static --enable-libx264 --enable-gpl --enable-debug --disable-optimizations --extra-ldflags="-LIBPATH:../../installed/lib" --extra-cflags="-I../../installed/include/"
 make -j 4
 REM make install
