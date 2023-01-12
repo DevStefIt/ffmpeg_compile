@@ -31,8 +31,8 @@ cd tmp/build
 mkdir x264
 cd x264
  
-CC=cl ../../sources/x264/configure --prefix=../../installed --enable-static
-make -j 4
+CC=cl ../../sources/x264/configure --prefix=../../installed --enable-static --extra-cflags="-MTd -Zi -Od"
+make
 make install
 
 echo Compiling ffmpeg...
@@ -41,6 +41,6 @@ git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg
 cd tmp/build
 mkdir ffmpeg
 cd ffmpeg
-CC=cl PKG_CONFIG_PATH=../../installed/lib/pkgconfig ../../sources/ffmpeg/configure --prefix=../../installed --toolchain=msvc --target-os=win64 --arch=x86_64 --enable-yasm --enable-asm --disable-shared --enable-static --enable-libx264 --enable-gpl --enable-nonfree --enable-debug --disable-optimizations --extra-ldflags="-LIBPATH:../../installed/lib" --extra-cxxflags="-I../../installed/include/ -MTd -Od -Zi" --extra-cflags="-I../../installed/include/ -MTd -Od -Zi" 
-make -j 4
+CC=cl PKG_CONFIG_PATH=../../installed/lib/pkgconfig ../../sources/ffmpeg/configure --prefix=../../installed --toolchain=msvc --target-os=win64 --arch=x86_64 --disable-x86asm --disable-asm --disable-shared --enable-static --enable-libx264 --disable-protocol=rtmp --disable-protocol=rtmps --disable-protocol=rtmpt --disable-protocol=rtmpts --disable-doc --enable-gpl --enable-version3 --enable-debug --disable-optimizations --optflags="-Od -Zi" --extra-ldflags="-LIBPATH:../../installed/lib" --extra-cflags="-I../../installed/include/ -MTd" --extra-cxxflags="-I../../installed/include/ -MTd"
+make
 REM make install
